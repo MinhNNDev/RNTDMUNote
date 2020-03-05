@@ -7,3 +7,5 @@ export default class App extends Component {
         return <MainContainer/>;
     }        
 }
+
+// Version Close Beta v0.1

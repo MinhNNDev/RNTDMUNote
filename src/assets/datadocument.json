@@ -1,0 +1,39 @@
+{
+  "page": 3,
+  "dataschool": [
+    {
+      "title_name": "Đại học Thủ Dầu Một",
+      "description": "Sứ mạng: Đào tạo nhân lực có chất lượng phục vụ phát\ntriển kinh tế - xã hội và hội nhập quốc tế của tỉnh Bình Dương, miền\nĐông Nam Bộ - vùng kinh tế trọng điểm phía Nam và trở thành\ntrung tâm tư vấn nghiên cứu trong khu vực.\n* Tầm nhìn: Phát triển theo mô hình đại học tiên tiến, xác lập\nuy tín trong nước và hội nhập. Người học có năng lực làm việc\ntrong nước và nước ngoài.\n* Mục tiêu:\n- Năm 2017: Đạt chuẩn kiểm định chất lượng giáo dục đại\nhọc quốc gia\n- Năm 2019: Đạt chuẩn AUN\n- Năm 2020: Tiến hành đánh giá chất lượng theo chuẩn\nQuốc tế (QS.STAR)\n- Năm 2021: Chuẩn Quốc gia đại học theo định hướng ứng dụng\n(Căn cứ văn bản số 548/ĐHTDM-HC ngày 23/11/2015)",
+    },
+    {
+      "faculty_name": "Khoa Kinh tế",
+    },
+    {
+      "faculty_name": "Khoa Sư phạm",
+    },
+    {
+      "faculty_name": "Khoa Ngoại ngữ",
+    },
+    {
+      "faculty_name": "Khoa Khoa học Tự nhiên",
+    },
+    {
+      "faculty_name": "Khoa Khoa học và Xã hội",
+    },
+
+    {
+      "faculty_name": "Khoa Kiến trúc",
+    },
+    {
+      "faculty_name": "Khoa Khoa Học Quản Lý",
+    }
+  ],
+  "duty": [
+    {
+      "title_name:"
+    }
+  ],
+
+  "total_pages": 1000,
+  "total_results": 20000
+}

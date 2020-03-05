@@ -1,0 +1,15 @@
+{
+  "page": 1,
+  "dataname": [
+    {"faculty_name": "Khoa Kĩ thuật - Công nghệ"},
+    {"faculty_name": "Khoa Kinh tế"},
+    {"faculty_name": "Khoa Sư phạm"},
+    {"faculty_name": "Khoa Ngoại ngữ"},
+    {"faculty_name": "Khoa Khoa học Tự nhiên"},
+    {"faculty_name": "Khoa Khoa học và Xã hội"},
+    {"faculty_name": "Khoa Kiến trúc"},
+    {"faculty_name": "Khoa Khoa Học Quản Lý"}
+  ],
+  "total_pages": 1000,
+  "total_results": 20000
+}
