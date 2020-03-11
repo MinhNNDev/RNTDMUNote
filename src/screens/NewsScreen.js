@@ -9,15 +9,45 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { create } from 'react-test-renderer';
 
 export default class DetailsScreen extends Component {
-  render() {
+  state = {
+    detail: [],
+  };
+  componentDidMount() {
+    this.fetchData();
+  }
+  fetchData = async () => {
     const {item} = this.props.navigation.state.params;
+
+    fetch(`http://45.119.212.43:2710/api/news/${item.cat_name}|${item.id_name}`)
+      .then(response => {
+        this.setState({detail: response.json()});
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  render() {
+    if (!this.state.detail) {
+      return (
+        <ActivityIndicator
+          size="large"
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+      );
+    }
+
+    const {item} = this.props.navigation.state.params;
+
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <HeaderComponent
@@ -30,17 +60,35 @@ export default class DetailsScreen extends Component {
             alignItem: 'center',
             justifyContent: 'center',
           }}>
-          <View style={{
-              marginHorizontal:20,
-              marginTop:10,
-          }}>
+          <View
+            style={{
+              marginHorizontal: 20,
+              marginTop: 10,
+            }}>
             <View>
-              <Text style={Styles.txtTitle}>
-                {item.title || item.name}
-              </Text>
+              <Text style={Styles.txtTitle}>{item.name}</Text>
             </View>
-            <View style={Styles.txtDetails}>
-              <Text>{item.overview}</Text>
+            <View>
+              <FlatList
+                style={{marginBottom: 65}}
+                //data={dataDemo.results}
+                data={this.state.detail} // Clone dữ liệu trực tiếp
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({item}) => {
+                  return (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Text style={Styles.watchcount}>
+                        Lượt xem: {item.view},
+                      </Text>
+                      <Text>{item.time}</Text>
+                    </View>
+                  );
+                }}
+              />
             </View>
           </View>
         </View>
@@ -50,14 +98,17 @@ export default class DetailsScreen extends Component {
 }
 
 const Styles = StyleSheet.create({
-    txtTitle: {
-        fontFamily: 'Roboto-Bold',
-        fontSize: 19,
-        
-    },
-    txtDetails: {
-        fontFamily:'Roboto-Regular',
-        fontSize: 16,
-        marginTop: 10,
-    },
+  txtTitle: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 19,
+  },
+  txtDetails: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    marginTop: 10,
+  },
+  watchcount: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 9,
+  },
 });
