@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   SafeAreaView,
-  ScrollView,
+  //ScrollView,
   View,
   Image,
   ActivityIndicator,
@@ -24,17 +24,15 @@ export default class HomeScreen extends Component {
         require('../assets/img/banner3.jpg'),
         require('../assets/img/banner4.jpg'),
       ],
+      news: [],
     };
   }
 
-  state = {
-    news: [],
-  };
   componentDidMount() {
     this.fetchData();
   }
   fetchData = async () => {
-    let response = await fetch('http://45.119.212.43:2710/api/news');
+    let response = await fetch(`http://45.119.212.43:2710/api/news`);
     let responseJson = await response.json();
     this.setState({news: responseJson});
   };
@@ -100,58 +98,57 @@ export default class HomeScreen extends Component {
             }}>
             Tin tức
           </Text>
-          <ScrollView>
-            <FlatList
-              style={{marginBottom: 65}}
-              //data={dataDemo.results}
-              data={this.state.news} // Clone dữ liệu trực tiếp
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate('NewsScreen', {item})
-                    }>
+
+          <FlatList
+            style={{marginBottom: 65}}
+            //data={dataDemo.results}
+            data={this.state.news} // Clone dữ liệu trực tiếp
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('NewsScreen', {item})
+                  }>
+                  <View
+                    style={{
+                      marginRight: 10,
+                      flexDirection: 'row',
+                    }}>
+                    <Image
+                      source={{uri: `https://tdmu.edu.vn` + item.img}}
+                      style={Styles.ImageNews}
+                      resizeMode="cover"
+                    />
                     <View
                       style={{
-                        marginRight: 10,
-                        flexDirection: 'row',
+                        flex: 1,
+                        flexDirection: 'column',
+                        marginVertical: 6,
                       }}>
-                      <Image
-                        source={{uri: 'https://tdmu.edu.vn' + item.img}}
-                        style={Styles.ImageNews}
-                        resizeMode="cover"
-                      />
-                      <View
+                      <Text
                         style={{
-                          flex: 1,
-                          flexDirection: 'column',
-                          marginVertical: 6,
+                          fontSize: 14,
+                          fontFamily: 'Roboto-Bold',
                         }}>
-                        <Text
-                          style={{
-                            fontSize: 14,
-                            fontFamily: 'Roboto-Bold',
-                          }}>
-                          {item.name}
-                        </Text>
-                        {/* <Text style={{
+                        {item.name}
+                      </Text>
+                      {/* <Text style={{
                   fontSize:12,
                   fontFamily: 'Roboto-Regular',
                   fontStyle: "italic",
                 }}
                   >Ngày cập nhật: {item.release_date}</Text>   */}
-                        <Text numberOfLines={2}>
-                          {' '}
-                          {item.desc.substring(0, 60)}...
-                        </Text>
-                      </View>
+                      <Text numberOfLines={2}>
+                        {' '}
+                        {item.desc.substring(0, 60)}...
+                      </Text>
                     </View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          </ScrollView>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
         </View>
       </SafeAreaView>
     );

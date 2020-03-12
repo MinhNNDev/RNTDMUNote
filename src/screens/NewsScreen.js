@@ -10,28 +10,33 @@ import {
 } from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
-import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default class DetailsScreen extends Component {
-  state = {
-    detail: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      detail: {},
+    };
+  }
+
   componentDidMount() {
     this.fetchData();
   }
   fetchData = async () => {
     const {item} = this.props.navigation.state.params;
+    //console.log(item);
 
     fetch(`http://45.119.212.43:2710/api/news/${item.cat_name}|${item.id_name}`)
+      .then(response => response.json())
       .then(response => {
-        this.setState({detail: response.json()});
+        this.setState({detail: response});
       })
       .catch(err => {
         console.log(err);
       });
   };
-
+  
   render() {
     if (!this.state.detail) {
       return (
@@ -47,7 +52,7 @@ export default class DetailsScreen extends Component {
     }
 
     const {item} = this.props.navigation.state.params;
-
+    
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <HeaderComponent
@@ -67,28 +72,18 @@ export default class DetailsScreen extends Component {
             }}>
             <View>
               <Text style={Styles.txtTitle}>{item.name}</Text>
-            </View>
-            <View>
-              <FlatList
-                style={{marginBottom: 65}}
-                //data={dataDemo.results}
-                data={this.state.detail} // Clone dữ liệu trực tiếp
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => {
-                  return (
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                      }}>
-                      <Text style={Styles.watchcount}>
-                        Lượt xem: {item.view},
-                      </Text>
-                      <Text>{item.time}</Text>
-                    </View>
-                  );
-                }}
-              />
+              <Text>{item.title}</Text>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text>{item.time}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <FontAwesome5 name="eye" size={11} />
+                  <Text> {item.view} </Text>
+                </View>
+              </View>
+              <View>
+                <Text>{item.content}</Text>
+              </View>
             </View>
           </View>
         </View>
