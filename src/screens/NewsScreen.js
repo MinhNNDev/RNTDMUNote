@@ -1,22 +1,25 @@
-import React, {Component} from 'react';
+import React, {Component, useCallback} from 'react';
 import {
   Text,
   SafeAreaView,
-  // ScrollView,
   View,
   Image,
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-
+//import { WebView } from 'react-native-webview';
 import HeaderComponent from '../components/HeaderComponent';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default class DetailsScreen extends Component {
+export default class NewsScreen extends Component {
   constructor(props) {
     super(props);
+
+    const {item} = props;
+
     this.state = {
-      detail: {},
+      detail: {...item},
     };
   }
 
@@ -25,18 +28,19 @@ export default class DetailsScreen extends Component {
   }
   fetchData = async () => {
     const {item} = this.props.navigation.state.params;
-    //console.log(item);
+    // console.log(item);
 
     fetch(`http://45.119.212.43:2710/api/news/${item.cat_name}|${item.id_name}`)
       .then(response => response.json())
       .then(response => {
+      
         this.setState({detail: response});
       })
       .catch(err => {
         console.log(err);
       });
   };
-  
+
   render() {
     if (!this.state.detail) {
       return (
@@ -52,7 +56,8 @@ export default class DetailsScreen extends Component {
     }
 
     const {item} = this.props.navigation.state.params;
-    
+    const { detail } = this.state;
+
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <HeaderComponent
@@ -70,21 +75,28 @@ export default class DetailsScreen extends Component {
               marginHorizontal: 20,
               marginTop: 10,
             }}>
-            <View>
-              <Text style={Styles.txtTitle}>{item.name}</Text>
-              <Text>{item.title}</Text>
+            
+             <ScrollView>
+             <View>
+              <Text style={Styles.txtTitle}>{(detail && detail.title) || item.name}</Text>
               <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text>{item.time}</Text>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                style={Styles.styleViewTime}>
+                <View style={Styles.layoutViewTime}>
+                <FontAwesome5 name="calendar-day" size={11}/>
+                <Text style={Styles.ViewAndTime}> {detail.time}</Text>
+                </View>
+                <View style={Styles.layoutViewTime}>
                   <FontAwesome5 name="eye" size={11} />
-                  <Text> {item.view} </Text>
+                  <Text style={Styles.ViewAndTime}> {detail.view}</Text>
                 </View>
               </View>
               <View>
-                <Text>{item.content}</Text>
+                
               </View>
             </View>
+             </ScrollView>
+              
+
           </View>
         </View>
       </SafeAreaView>
@@ -93,6 +105,15 @@ export default class DetailsScreen extends Component {
 }
 
 const Styles = StyleSheet.create({
+  styleViewTime: {
+    marginTop:10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  layoutViewTime:{
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   txtTitle: {
     fontFamily: 'Roboto-Bold',
     fontSize: 19,
@@ -105,5 +126,9 @@ const Styles = StyleSheet.create({
   watchcount: {
     fontFamily: 'Roboto-Bold',
     fontSize: 9,
+  },
+  ViewAndTime:{
+    fontFamily:'Roboto-Regular',
+    fontSize: 12,
   },
 });

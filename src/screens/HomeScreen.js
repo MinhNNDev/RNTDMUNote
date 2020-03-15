@@ -12,7 +12,7 @@ import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import {SliderBox} from 'react-native-image-slider-box';
-import dataDemo from '../assets/data.json';
+
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -101,7 +101,6 @@ export default class HomeScreen extends Component {
 
           <FlatList
             style={{marginBottom: 65}}
-            //data={dataDemo.results}
             data={this.state.news} // Clone dữ liệu trực tiếp
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
