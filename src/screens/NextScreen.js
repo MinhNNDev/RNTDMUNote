@@ -28,7 +28,7 @@ export default class NextScreen extends Component {
   render() {
     return (
       <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
-        <HeaderComponent title="" />
+        <HeaderComponent title="Sổ Tay Sinh Viên" />
         <View>
           <SliderBox
             images={this.state.images}

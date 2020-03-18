@@ -12,7 +12,7 @@ import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import {SliderBox} from 'react-native-image-slider-box';
-
+import {ScrollView} from 'react-native-gesture-handler';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -98,56 +98,59 @@ export default class HomeScreen extends Component {
             }}>
             Tin tức
           </Text>
-
-          <FlatList
-            style={{marginBottom: 65}}
-            data={this.state.news} // Clone dữ liệu trực tiếp
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate('NewsScreen', {item})
-                  }>
-                  <View
-                    style={{
-                      marginRight: 10,
-                      flexDirection: 'row',
-                    }}>
-                    <Image
-                      source={{uri: `https://tdmu.edu.vn` + item.img}}
-                      style={Styles.ImageNews}
-                      resizeMode="cover"
-                    />
+          <ScrollView>
+            <FlatList
+              style={{marginBottom: 75}}
+              data={this.state.news} // Clone dữ liệu trực tiếp
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('NewsScreen', {item})
+                    }>
                     <View
                       style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        marginVertical: 6,
+                        marginRight: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
                       }}>
-                      <Text
+                      <Image
+                        source={{uri: `https://tdmu.edu.vn` + item.img}}
+                        style={Styles.ImageNews}
+                        resizeMode="cover"
+                        
+                      />
+                      <View
                         style={{
-                          fontSize: 14,
-                          fontFamily: 'Roboto-Bold',
+                          flex: 1,
+                          flexDirection: 'column',
+                          marginVertical: 6,
                         }}>
-                        {item.name}
-                      </Text>
-                      {/* <Text style={{
+                        <Text
+                          numberOfLines={2}
+                          style={{
+                            fontSize: 14,
+                            fontFamily: 'Roboto-Bold',
+                          }}>
+                          {item.name}
+                        </Text>
+                        {/* <Text style={{
                   fontSize:12,
                   fontFamily: 'Roboto-Regular',
                   fontStyle: "italic",
                 }}
-                  >Ngày cập nhật: {item.release_date}</Text>   */}
-                      <Text numberOfLines={2}>
-                        {' '}
-                        {item.desc.substring(0, 60)}...
-                      </Text>
+                  >Ngày cập nhật: {item.time}</Text>   */}
+                        <Text numberOfLines={2}>
+                          {item.desc.substring(0, 60)}...
+                        </Text>
+                      </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
-          />
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          </ScrollView>
         </View>
       </SafeAreaView>
     );
