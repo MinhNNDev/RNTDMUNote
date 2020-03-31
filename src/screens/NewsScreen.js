@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
+import {WebView} from 'react-native-webview';
 import HeaderComponent from '../components/HeaderComponent';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -57,7 +57,6 @@ export default class NewsScreen extends Component {
       );
     }
 
-
     const {item} = this.props.navigation.state.params;
     const {detail} = this.state;
     var datacontent = entities.decode(detail.content);
@@ -94,9 +93,11 @@ export default class NewsScreen extends Component {
                     <Text style={Styles.ViewAndTime}> {detail.view}</Text>
                   </View>
                 </View>
-                <View style={Styles.txtDetails}> 
-                  <HTML html= {datacontent}
-                  imagesMaxWidth={Dimensions.get('window').width}/>
+                <View style={Styles.txtDetails}>
+                  <HTML
+                    html={datacontent}
+                    imagesMaxWidth={Dimensions.get('window').width}
+                  />
                 </View>
               </View>
             </View>

@@ -23,6 +23,7 @@ export default class DetailsScreen extends Component {
           backBtn={true}
           goBack={() => this.props.navigation.goBack()}
         />
+        
         <View
           style={{
             alignItem: 'center',

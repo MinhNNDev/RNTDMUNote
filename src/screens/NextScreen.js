@@ -11,7 +11,7 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HeaderComponent from '../components/HeaderComponent';
 import {SliderBox} from 'react-native-image-slider-box';
-import dataDemo from '../assets/data.json';
+
 
 export default class NextScreen extends Component {
   constructor(props) {
