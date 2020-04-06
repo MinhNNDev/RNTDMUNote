@@ -6,12 +6,11 @@ import {
   View,
   ActivityIndicator,
   StyleSheet,
+  TouchableOpacity
 } from 'react-native';
-import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {SliderBox} from 'react-native-image-slider-box';
 import textdata from '../assets/datatext';
 
 export default class CategoryScreen extends Component {

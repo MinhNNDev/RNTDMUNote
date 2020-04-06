@@ -5,7 +5,6 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import HomeScreen from './screens/HomeScreen';
-import NextScreen from './screens/NextScreen';
 import OptionsScreen from './screens/OptionsScreen';
 import SchoolNote from './screens/SchoolNote';
 import FacultyNote from './screens/FacultyNote';
@@ -16,7 +15,7 @@ import NewsScreen from './screens/NewsScreen';
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-    NextScreen: NextScreen,
+   // NextScreen: NextScreen,
     SchoolNote: SchoolNote,
     FacultyNote: FacultyNote,
     OptionsScreen: OptionsScreen,
@@ -33,40 +32,40 @@ const HomeStack = createStackNavigator(
   },
 );
 
-const BottomNav = createBottomTabNavigator(
-  {
-    HomeStack: {screen: HomeStack, navigationOptions: {tabBarLabel: 'Home'}},
-    NextScreen: {screen: NextScreen, navigationOptions: {tabBarLabel: 'Note'}},
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: ({focused, horizontal, tintColor}) => {
-        const {routeName} = navigation.state;
-        let iconName;
-        if (routeName === 'HomeStack') {
-          iconName = 'university';
-        } else if (routeName === 'NextScreen') {
-          iconName = 'book';
-        }
-        return <FontAwesome5 name={iconName} size={20} color={tintColor} />;
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: '#5A7BBD',
-      inactiveTintColor: '#001F45',
-      style: {paddingVertical: 7},
-      labelStyle: {
-        fontFamily: 'Roboto-Regular',
-        fontSize: 11,
-      },
-    },
-  },
-);
+// const BottomNav = createBottomTabNavigator(
+//   {
+//     HomeStack: {screen: HomeStack, navigationOptions: {tabBarLabel: 'Home'}},
+//     NextScreen: {screen: NextScreen, navigationOptions: {tabBarLabel: 'Note'}},
+//   },
+//   {
+//     defaultNavigationOptions: ({navigation}) => ({
+//       tabBarIcon: ({focused, horizontal, tintColor}) => {
+//         const {routeName} = navigation.state;
+//         let iconName;
+//         if (routeName === 'HomeStack') {
+//           iconName = 'university';
+//         } else if (routeName === 'NextScreen') {
+//           iconName = 'book';
+//         }
+//         return <FontAwesome5 name={iconName} size={20} color={tintColor} />;
+//       },
+//     }),
+//     tabBarOptions: {
+//       activeTintColor: '#5A7BBD',
+//       inactiveTintColor: '#001F45',
+//       style: {paddingVertical: 7},
+//       labelStyle: {
+//         fontFamily: 'Roboto-Regular',
+//         fontSize: 11,
+//       },
+//     },
+//   },
+// );
 
 // const StackNav = createStackNavigator({
 //     Home: HomeScreen,
 //     Dashboard: BottomNav
 // });
 
-const MainContainer = createAppContainer(BottomNav);
+const MainContainer = createAppContainer(HomeStack);
 export default MainContainer;

@@ -87,6 +87,40 @@ export default class HomeScreen extends Component {
             ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
           />
         </View>
+        
+        <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('SchoolNote')}
+            style={[Styles.fixToBt,Styles.btMarginLeft]}>
+            <Text
+              style={{
+                fontFamily: 'Roboto-Bold',
+                color: '#000',
+              }}>
+              School Note
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('OptionsScreen')}
+            style={[Styles.fixToBt,Styles.btMarginRight]}>
+            <Text
+              style={{
+                fontFamily: 'Roboto-Bold',
+                color: '#000',
+              }}>
+              Faculty Note
+            </Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+
 
         <View style={{marginLeft: 16}}>
           <Text
@@ -163,5 +197,26 @@ const Styles = StyleSheet.create({
     height: 65,
     borderRadius: 3,
     marginRight: 10,
+  },
+  fixToBt: {
+    width: 193,
+    height: 40,
+    borderRadius: 1,
+    marginTop: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    elevation: 6,
+    shadowRadius: 10,
+    shadowOffset: {width: 56, height: 13},
+    borderWidth: 0,
+    backgroundColor: '#fff',
+  },
+  btMarginLeft: {
+    marginLeft: 8, // Check Trai
+  },
+  btMarginRight: {
+    marginRight: 8, // Check Phai
   },
 });
