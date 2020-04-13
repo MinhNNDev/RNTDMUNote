@@ -15,7 +15,6 @@ import NewsScreen from './screens/NewsScreen';
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-   // NextScreen: NextScreen,
     SchoolNote: SchoolNote,
     FacultyNote: FacultyNote,
     OptionsScreen: OptionsScreen,

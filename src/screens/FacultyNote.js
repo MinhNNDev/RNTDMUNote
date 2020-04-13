@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   Text,
   SafeAreaView,
-  ScrollView,
   View,
   Image,
   StyleSheet,
@@ -36,29 +35,30 @@ export default class FacultyNote extends Component {
 
     return (
       <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
-       
-          <HeaderComponent
-            title="Sổ tay khoa"
-            backBtn={true}
-            goBack={() => this.props.navigation.goBack()}
+        <HeaderComponent
+          title="Sổ tay khoa"
+          backBtn={true}
+          goBack={() => this.props.navigation.goBack()}
+        />
+        <View style={styles.viewcover}>
+          <Image
+              source={{uri:`https://ngocminh.design/imageapp/${item.image}`
+        }}
+            style={styles.imgcover}
           />
-          <View style={styles.viewcover}>
-            <Image
-              source={require('../assets/img/ImgF/CNKT.jpg')}
-              style={styles.imgcover}
-            />
-            <Text
-              style={{
-                position: 'absolute',
-                fontFamily: 'Roboto-Bold',
-                fontSize: 22,
-                color: '#fff',
-              }}>
-              {item.faculty_name}
-            </Text>
-          </View>
-
+          <Text
+            style={{
+              position: 'absolute',
+              fontFamily: 'Roboto-Bold',
+              fontSize: 22,
+              color: '#fff',
+            }}>
+            {item.faculty_name}
+          </Text>
+        </View>
+        <View style={{marginTop: 10}}>
           <View style={styles.itemContainer}>{this.renderData()}</View>
+        </View>
       </SafeAreaView>
     );
   }

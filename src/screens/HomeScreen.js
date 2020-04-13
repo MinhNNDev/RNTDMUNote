@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   SafeAreaView,
-  //ScrollView,
+  ScrollView,
   View,
   Image,
   ActivityIndicator,
@@ -12,7 +12,6 @@ import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import {SliderBox} from 'react-native-image-slider-box';
-import {ScrollView} from 'react-native-gesture-handler';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -57,7 +56,7 @@ export default class HomeScreen extends Component {
           <SliderBox
             images={this.state.images}
             sliderBoxHeight={200}
-            onCurrentImagePressed={index =>
+            onCurrentImagePressed={(index) =>
               console.warn(`image ${index} pressed`)
             }
             dotColor="#5597FF"
@@ -87,45 +86,43 @@ export default class HomeScreen extends Component {
             ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
           />
         </View>
-        
+
         <View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('SchoolNote')}
-            style={[Styles.fixToBt,Styles.btMarginLeft]}>
-            <Text
-              style={{
-                fontFamily: 'Roboto-Bold',
-                color: '#000',
-              }}>
-              School Note
-            </Text>
-          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('SchoolNote')}
+              style={[Styles.fixToBt, Styles.btMarginLeft]}>
+              <Text
+                style={{
+                  fontFamily: 'Roboto-Bold',
+                  color: '#000',
+                }}>
+                School Note
+              </Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('OptionsScreen')}
-            style={[Styles.fixToBt,Styles.btMarginRight]}>
-            <Text
-              style={{
-                fontFamily: 'Roboto-Bold',
-                color: '#000',
-              }}>
-              Faculty Note
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('OptionsScreen')}
+              style={[Styles.fixToBt, Styles.btMarginRight]}>
+              <Text
+                style={{
+                  fontFamily: 'Roboto-Bold',
+                  color: '#000',
+                }}>
+                Faculty Note
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-
-
 
         <View style={{marginLeft: 16}}>
           <Text
             style={{
-              marginVertical: 10,
+              marginVertical: 5,
               fontFamily: 'Roboto-Bold',
               fontSize: 19,
               color: '#001f45',
@@ -153,7 +150,6 @@ export default class HomeScreen extends Component {
                         source={{uri: `https://tdmu.edu.vn` + item.img}}
                         style={Styles.ImageNews}
                         resizeMode="cover"
-                        
                       />
                       <View
                         style={{

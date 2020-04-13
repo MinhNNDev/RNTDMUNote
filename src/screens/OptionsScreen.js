@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   SafeAreaView,
-  // ScrollView,
   View,
-  Image,
-  ActivityIndicator,
   StyleSheet,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';

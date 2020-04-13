@@ -2,11 +2,8 @@ import React, {Component} from 'react';
 import {
   Text,
   SafeAreaView,
-  ScrollView,
   View,
-  ActivityIndicator,
   StyleSheet,
-  TouchableOpacity
 } from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
@@ -36,7 +33,6 @@ export default class CategoryScreen extends Component {
   }
 
   render() {
-    //const {item} = this.props.navigation.state.params;
     const {navigation} = this.props;
     const {data} = this.state;
 
@@ -74,7 +70,6 @@ export default class CategoryScreen extends Component {
     );
   }
 }
-//DetailsScreen
 
 const stylescreen = StyleSheet.create({
   viewtitle: {

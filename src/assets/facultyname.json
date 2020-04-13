@@ -1,13 +1,36 @@
 {
   "dataname": [
-    {"faculty_name": "Khoa Kĩ thuật - Công nghệ"},
-    {"faculty_name": "Khoa Kinh tế"},
-    {"faculty_name": "Khoa Sư phạm"},
-    {"faculty_name": "Khoa Ngoại ngữ"},
-    {"faculty_name": "Khoa Khoa học Tự nhiên"},
-    {"faculty_name": "Khoa Khoa học và Xã hội"},
-    {"faculty_name": "Khoa Kiến trúc"},
-    {"faculty_name": "Khoa Khoa Học Quản Lý"}
+    {
+      "faculty_name": "Khoa Kĩ thuật - Công nghệ",
+      "image": "/imgtechnology.jpg"
+    },
+    {
+      "faculty_name": "Khoa Kinh tế",
+      "image": "/imgeconomy.jpg"
+    },
+    {
+      "faculty_name": "Khoa Sư phạm",
+      "image": "imgeducation.jpg"
+    },
+    {
+      "faculty_name": "Khoa Ngoại ngữ",
+      "image": "/imglanguage.jpg"
+    },
+    {
+      "faculty_name": "Khoa Khoa học Tự nhiên",
+      "image": "imgphysics.jpg"
+    },
+    {
+      "faculty_name": "Khoa Khoa học và Xã hội",
+      "image": "imglanguage.jpg"
+    },
+    {
+      "faculty_name": "Khoa Kiến trúc",
+      "image": "imglanguage.jpg"
+    },
+    {
+      "faculty_name": "Khoa Khoa Học Quản Lý",
+      "image": "imglanguage.jpg"
+    }
   ]
 }
-
