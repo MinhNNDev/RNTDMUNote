@@ -6,14 +6,44 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  ScrollView
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
 import textData from '../assets/datatext';
+import HTML from 'react-native-render-html';
+import { FlatList } from 'react-native-gesture-handler';
+import CategoryScreen from './CategoryScreen';
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 const screenWidth = Dimensions.get('window').width;
 
 export default class FacultyNote extends Component {
+  constructor(props){
+    super(props);
+  const {item} = props;
+
+    this.state = {
+      cont: {...item},
+    };
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  fetchData = async () => {
+    const {item} = this.props.navigation.state.params;
+    fetch(`http://tdmuapp.ngocminh.design/api.php?${item.idcode}`)
+    .then(response => response.json())
+      .then(response => {
+        this.setState({cont: response});
+        
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   goToCategoryScreen = key => {
     this.props.navigation.navigate('CategoryScreen', {key});
   };
@@ -31,8 +61,10 @@ export default class FacultyNote extends Component {
   };
 
   render() {
+    const numColumns = 2;
     const {item} = this.props.navigation.state.params;
-
+    const {cont} = this.state;
+    var datacontent = entities.decode(cont.content);
     return (
       <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
         <HeaderComponent
@@ -42,8 +74,7 @@ export default class FacultyNote extends Component {
         />
         <View style={styles.viewcover}>
           <Image
-              source={{uri:`https://ngocminh.design/imageapp/${item.image}`
-        }}
+              source={{uri:`https://ngocminh.design/imageapp/${item.image}`}}
             style={styles.imgcover}
           />
           <Text
@@ -54,10 +85,33 @@ export default class FacultyNote extends Component {
               color: '#fff',
             }}>
             {item.faculty_name}
+            
           </Text>
         </View>
-        <View style={{marginTop: 10}}>
-          <View style={styles.itemContainer}>{this.renderData()}</View>
+        {/* <Text>{item.idcode}</Text> */}
+        <View style={styles.viewTable}>
+          {/* <View style={styles.itemContainer}>{this.renderData()}</View> */}
+          <ScrollView>
+            <FlatList 
+              style={{}}
+              data={cont}
+              numColumns={numColumns}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) =>{
+                 return(
+                   <TouchableOpacity onPress={()=>this.props.navigation.navigate('CategoryScreen',{item})}>
+                   <View>
+                     <View style={styles.tbBox}>
+                        <Image style={styles.imgst} />
+                        <Text style={styles.cstxt}>{item.name}</Text>
+                     </View>
+                   </View>
+                     
+                   </TouchableOpacity>
+                 ) 
+              }}
+            />
+          </ScrollView>
         </View>
       </SafeAreaView>
     );
@@ -66,12 +120,12 @@ export default class FacultyNote extends Component {
 
 const styles = StyleSheet.create({
   tbBox: {
-    width: 170,
-    height: 120,
+    width: screenWidth / 2 - 30,
+    height: 132,
     borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#346356',
   },
   tbBox1: {
     width: screenWidth / 2 - 15,
@@ -91,15 +145,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderLeftWidth: 1,
     borderBottomWidth: 1,
-  },
-  tbBox3: {
-    width: 170,
-    height: 120,
-    borderRadius: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderLeftWidth: 1,
   },
   cstxt: {
     fontFamily: 'Roboto-Regular',
@@ -135,4 +180,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 15,
   },
+  viewTable:{
+    marginTop:30,
+    marginHorizontal:30,
+  }
+
 });

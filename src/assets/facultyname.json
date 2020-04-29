@@ -2,34 +2,43 @@
   "dataname": [
     {
       "faculty_name": "Khoa Kĩ thuật - Công nghệ",
+      "idcode": "department=KTCN",
       "image": "/imgtechnology.jpg"
+      
     },
     {
       "faculty_name": "Khoa Kinh tế",
+      "idcode": "department=KITE",
       "image": "/imgeconomy.jpg"
     },
     {
       "faculty_name": "Khoa Sư phạm",
+      "idcode": "department=SUPH",
       "image": "imgeducation.jpg"
     },
     {
       "faculty_name": "Khoa Ngoại ngữ",
+      "idcode": "department=NNGU",
       "image": "/imglanguage.jpg"
     },
     {
       "faculty_name": "Khoa Khoa học Tự nhiên",
+      "idcode": "department=KCTN",
       "image": "imgphysics.jpg"
     },
     {
       "faculty_name": "Khoa Khoa học và Xã hội",
+      "idcode": "department=XHNV",
       "image": "imglanguage.jpg"
     },
     {
       "faculty_name": "Khoa Kiến trúc",
+      "idcode": "department=KITR",
       "image": "imglanguage.jpg"
     },
     {
       "faculty_name": "Khoa Khoa Học Quản Lý",
+      "idcode": "department=KHQL",
       "image": "imglanguage.jpg"
     }
   ]

@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import {WebView} from 'react-native-webview';
 import HeaderComponent from '../components/HeaderComponent';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native-gesture-handler';

@@ -101,7 +101,7 @@ export default class HomeScreen extends Component {
                   fontFamily: 'Roboto-Bold',
                   color: '#000',
                 }}>
-                School Note
+                Sổ tay Trường
               </Text>
             </TouchableOpacity>
 
@@ -113,7 +113,7 @@ export default class HomeScreen extends Component {
                   fontFamily: 'Roboto-Bold',
                   color: '#000',
                 }}>
-                Faculty Note
+                Sổ tay Khoa
               </Text>
             </TouchableOpacity>
           </View>
