@@ -10,7 +10,6 @@ import {
 import HeaderComponent from '../components/HeaderComponent';
 import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import textdata from '../assets/datatext';
 import HTML from 'react-native-render-html';
 
 const Entities = require('html-entities').AllHtmlEntities;
@@ -43,7 +42,7 @@ export default class CategoryScreen extends Component {
               html={datacontent}
               imagesMaxWidth={Dimensions.get('window').width}
             />
-            </View>
+            </View >
           </ScrollView>
         </View>
       </SafeAreaView>
@@ -54,6 +53,6 @@ export default class CategoryScreen extends Component {
 const styles = StyleSheet.create({
     viewContent:{
       marginHorizontal:7,
-      
     }
+
 });

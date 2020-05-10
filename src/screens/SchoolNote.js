@@ -9,28 +9,41 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
-import textData from '../assets/datatext';
+import {FlatList} from 'react-native-gesture-handler';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 const screenWidth = Dimensions.get('window').width;
 
 export default class SchoolNote extends Component {
-  goToCategoryScreen = key => {
-    this.props.navigation.navigate('CategoryScreen', {key});
-  };
+  constructor(props) {
+    super(props);
+    const {item} = props;
 
-  renderData = () => {
-    return Object.values(textData).map((data, index) => (
-      <TouchableOpacity
-        key={data.key}
-        style={index % 2 == 0 ? styles.tbBox1 : styles.tbBox2}
-        onPress={() => this.goToCategoryScreen(data.key)}>
-        <Image source={data.image} style={styles.imgst} />
-        <Text style={styles.cstxt}>{data.name}</Text>
-      </TouchableOpacity>
-    ));
+    this.state = {
+      cont: {...item},
+    };
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  fetchData = async () => {
+    fetch(`http://tdmuapp.ngocminh.design/api.php`)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({cont: response});
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
+    const numColumns = 2;
+    const {cont} = this.state;
+    var datacontent = entities.decode(cont.content);
     return (
       <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
         <HeaderComponent
@@ -59,9 +72,45 @@ export default class SchoolNote extends Component {
             Đại học Thủ Dầu Một
           </Text>
         </View>
-
-        <View style={{marginTop: 10}}>
-          <View style={styles.itemContainer}>{this.renderData()}</View>
+        <View style={styles.viewTable}>
+          <View style={styles.lineCol} />
+          <View style={[styles.lineRow, styles.lineRowAbove]} />
+          <View style={[styles.lineRow, styles.lineRowBelow]} />
+          <FlatList
+            style={{}}
+            data={cont}
+            numColumns={numColumns}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CategoryScreen', {item})
+                    }>
+                    <View>
+                      <View style={styles.tbBox}>
+                        <FontAwesome5
+                          style={styles.imgst}
+                          name={item.image}
+                          size={37}
+                          color="rgba(19,146,253,1)"
+                        />
+                        <Text style={styles.cstxt}>{item.name}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+          />
+          <View
+            style={{
+              borderBottomColor: 'black',
+              borderBottomWidth: 7,
+              position: 'absolute',
+            }}
+          />
         </View>
       </SafeAreaView>
     );
@@ -69,41 +118,20 @@ export default class SchoolNote extends Component {
 }
 
 const styles = StyleSheet.create({
-  tbBox1: {
-    width: screenWidth / 2 - 15,
-    height: 120,
+  tbBox: {
+    width: screenWidth / 2 - 30,
+    height: 132,
     borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-  },
-  tbBox2: {
-    width: screenWidth / 2 - 15,
-    height: 120,
-    borderRadius: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderLeftWidth: 1,
-    borderBottomWidth: 1,
-  },
-  tbBox3: {
-    width: 170,
-    height: 120,
-    borderRadius: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderLeftWidth: 1,
+    backgroundColor: '#fff9',
   },
   cstxt: {
     fontFamily: 'Roboto-Regular',
     fontSize: 14,
   },
   imgst: {
-    height: 35,
-    width: 35,
+    marginBottom: 5,
   },
   imgcover: {
     width: '97%',
@@ -131,4 +159,26 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 15,
   },
+  viewTable: {
+    marginTop: 30,
+    marginHorizontal: 30,
+    backgroundColor: '#fff',
+  },
+  lineCol: {
+    position: 'absolute',
+    width: 1,
+    height: 396,
+    backgroundColor: '#000',
+    justifyContent: 'center',
+    marginHorizontal: screenWidth / 2.37,
+  },
+  lineRow: {
+    position: 'absolute',
+    width: 332,
+    height: 1,
+    backgroundColor: '#000',
+    justifyContent: 'center',
+  },
+  lineRowAbove: {marginTop: 131},
+  lineRowBelow: {marginTop: 263},
 });
