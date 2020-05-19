@@ -19,8 +19,8 @@ export default class HomeScreen extends Component {
     this.state = {
       images: [
         require('../assets/img/banner1.jpg'),
-        require('../assets/img/banner2.jpg'),
-        require('../assets/img/banner3.jpg'),
+        require('../assets/img/bn2.jpg'),
+        require('../assets/img/bn1.jpg'),
         require('../assets/img/banner4.jpg'),
       ],
       news: [],

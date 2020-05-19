@@ -1,43 +1,43 @@
 {
   "dataname": [
     {
-      "faculty_name": "Khoa Kĩ thuật - Công nghệ",
+      "faculty_name": "KTCN - Kĩ thuật phần mềm",
       "idcode": "department=KTCN",
       "image": "/imgtechnology.jpg"
       
     },
     {
-      "faculty_name": "Khoa Kinh tế",
+      "faculty_name": "KT - Quản trị kinh doanh",
       "idcode": "department=KITE",
       "image": "/imgeconomy.jpg"
     },
     {
-      "faculty_name": "Khoa Sư phạm",
+      "faculty_name": "KT - Kế toán",
       "idcode": "department=SUPH",
       "image": "imgeducation.jpg"
     },
     {
-      "faculty_name": "Khoa Ngoại ngữ",
+      "faculty_name": "NN - Ngôn ngữ Anh",
       "idcode": "department=NNGU",
       "image": "/imglanguage.jpg"
     },
     {
-      "faculty_name": "Khoa Khoa học Tự nhiên",
+      "faculty_name": "KHTN - Toán học",
       "idcode": "department=KCTN",
       "image": "imgphysics.jpg"
     },
     {
-      "faculty_name": "Khoa Khoa học và Xã hội",
+      "faculty_name": "KHXH - Lịch sử",
       "idcode": "department=XHNV",
       "image": "imglanguage.jpg"
     },
     {
-      "faculty_name": "Khoa Kiến trúc",
+      "faculty_name": "KTR - Thiết kế đồ họa",
       "idcode": "department=KITR",
       "image": "imglanguage.jpg"
     },
     {
-      "faculty_name": "Khoa Khoa Học Quản Lý",
+      "faculty_name": "KHQL - Quản lí nhà nước",
       "idcode": "department=KHQL",
       "image": "imglanguage.jpg"
     }
