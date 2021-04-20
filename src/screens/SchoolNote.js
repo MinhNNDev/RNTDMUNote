@@ -20,9 +20,7 @@ const screenWidth = Dimensions.get('window').width;
 export default class SchoolNote extends Component {
   constructor(props) {
     super(props);
-    const {item} = props;k
-
-    klflskdfl;adsklskjdlskdjfsdk;;kdmlksdj
+    const {item} = props;
 
     this.state = {
       cont: {...item},
